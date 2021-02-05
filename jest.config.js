@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+
 const root = resolve(__dirname);
 
 module.exports = {
@@ -7,7 +8,6 @@ module.exports = {
   clearMocks: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
-  clearMocks: true,
   coverageProvider: 'v8',
   preset: 'ts-jest',
   testEnvironment: 'node',
