@@ -8,10 +8,10 @@ const rootConfig = require(`${root}/jest.config.js`);
 module.exports = {
   ...rootConfig,
   ...{
-    roots: [root],
+    rootDir: root,
     displayName: 'end2end-tests',
-    // setupFilesAfterEnv: ['<rootDir>/test/jest-setup.ts'],
-    testMatch: ['<rootDir>/**/*.test.ts'],
+    setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
+    testMatch: ['<rootDir>**/*.test.ts'],
     transform: {
       '.+\\.ts$': 'ts-jest',
     },
