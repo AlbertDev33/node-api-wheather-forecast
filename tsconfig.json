@@ -13,8 +13,8 @@
       "strictNullChecks": true,
       "baseUrl": ".",
       "paths": {
-          "@src/*": ["./src/*"],
-          "@test/*": ["./test/*"]
+          "@src/*": ["src/*"],
+          "@test/*": ["test/*"]
       },
       "rootDirs": [
           "./src",
