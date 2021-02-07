@@ -13,8 +13,8 @@
       "strictNullChecks": true,
       "baseUrl": ".",
       "paths": {
-          "@src/*": ["src/*"],
-          "@test/*": ["test/*"]
+          "@src/*": ["./src/*"],
+          "@test/*": ["./test/*"]
       },
       "rootDirs": [
           "./src",
@@ -27,5 +27,15 @@
       "emitDecoratorMetadata": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true
-    }
+    },
+    "include": [
+      "./test/**/*.ts",
+      "./src/**/*.ts"
+    ],
+    "exclude": [
+      "./node_modules",
+      "./tests",
+      "./lib",
+      "./dist"
+    ]
   }

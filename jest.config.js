@@ -4,7 +4,7 @@ const root = resolve(__dirname);
 
 
 module.exports = {
-  roots: [root],
+  rootDir: root,
   displayName: 'root-tests',
   clearMocks: true,
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],

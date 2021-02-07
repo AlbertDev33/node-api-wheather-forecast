@@ -502,7 +502,7 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@overnightjs/core@^1.7.5":
+"@overnightjs/core@^1.7.4":
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/@overnightjs/core/-/core-1.7.5.tgz#df52792ec02c31b083bc5c6502f86b4d13028f0a"
   integrity sha512-YKWXL6wHqAWMsC8QMsVzF1iatJ2KEaSPcZcm1/PKfJzHALQ3O5Kic3PuPAlBMVjdNeBm2/DWpuQL3ZuKiUp2AQ==
