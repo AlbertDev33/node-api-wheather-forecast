@@ -4,7 +4,7 @@ import axios from 'axios';
 jest.mock('axios');
 
 describe('StormGlass client', () => {
-  it('Sholuld return the normalized forecas from StormGlass service', async () => {
+  it('Sholuld return the normalized forecast from StormGlass service', async () => {
     const lat = -33.792726;
     const lng = 151.289824;
 
