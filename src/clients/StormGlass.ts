@@ -1,6 +1,7 @@
 import { AxiosStatic } from 'axios';
 
 import { ClientRequestError } from '@src/util/errors/cliente-request-error';
+import { StormGlassResponseError } from '@src/util/errors/storm-glass-response-error';
 
 export interface StormGlassPointSource {
   [key: string]: number;
@@ -53,6 +54,14 @@ export class StormGlass {
 
       return this.normalizeResponse(response.data);
     } catch (err) {
+      if (err.response && err.response.status) {
+        throw new StormGlassResponseError(
+          `Error: ${JSON.stringify(err.response.data)} Code: ${
+            err.response.status
+          }`,
+        );
+      }
+
       throw new ClientRequestError(err.message);
     }
   }
