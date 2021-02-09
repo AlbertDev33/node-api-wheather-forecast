@@ -1,6 +1,7 @@
 import { StormGlass } from '@src/clients/StormGlass';
 import stormGlassNormalizedResponseFixture from '@test/fixtures/stormglass_normalized_response_3_hours.json';
 import { Forecast, Beach, BeachPosition } from '@src/services/forecast';
+import { ForecastProcessingInternalError } from '@src/util/errors/forecast-processing-internal-error';
 
 jest.mock('@src/clients/stormGlass');
 
@@ -112,7 +113,7 @@ describe('Forecast Service', () => {
 
     const forecast = new Forecast(mockedStormGlassService);
     await expect(forecast.processForecastForBeaches(beaches)).rejects.toThrow(
-      Error,
+      ForecastProcessingInternalError,
     );
   });
 });
