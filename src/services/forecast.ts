@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import { StormGlass, ForecastPoint } from '@src/clients/StormGlass';
+import { ForecastProcessingInternalError } from '@src/util/errors/forecast-processing-internal-error';
 
 export enum BeachPosition {
   S = 'S',
@@ -49,7 +50,7 @@ export class Forecast {
       }
       return this.mapForecastByTime(pointWithCorrectSources);
     } catch (error) {
-      throw new Error(error);
+      throw new ForecastProcessingInternalError(error.message);
     }
   }
 
