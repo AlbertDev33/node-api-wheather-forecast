@@ -1,4 +1,3 @@
-// import { AxiosStatic } from 'axios';
 import * as HTTPUtil from '@src/util/request';
 import config, { IConfig } from 'config';
 
