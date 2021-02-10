@@ -13,9 +13,13 @@ export class ForecasController {
     _: Request,
     response: Response,
   ): Promise<void> {
-    const beaches = await Beach.find({});
-    const forecastData = await forecast.processForecastForBeaches(beaches);
+    try {
+      const beaches = await Beach.find({});
+      const forecastData = await forecast.processForecastForBeaches(beaches);
 
-    response.status(200).send(forecastData);
+      response.status(200).send(forecastData);
+    } catch (error) {
+      response.status(500).send({ error: 'Something went wrong' });
+    }
   }
 }
