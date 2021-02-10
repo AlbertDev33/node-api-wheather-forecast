@@ -2,20 +2,7 @@
 /* eslint-disable no-restricted-syntax */
 import { StormGlass, ForecastPoint } from '@src/clients/StormGlass';
 import { ForecastProcessingInternalError } from '@src/util/errors/forecast-processing-internal-error';
-
-export enum BeachPosition {
-  S = 'S',
-  E = 'E',
-  W = 'W',
-  N = 'N',
-}
-
-export interface Beach {
-  name: string;
-  position: BeachPosition;
-  lat: number;
-  lng: number;
-}
+import { Beach } from '@src/models/beach';
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
 
