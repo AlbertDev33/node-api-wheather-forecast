@@ -1,12 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
-export interface RequestConfig extends AxiosRequestConfig {
-  url?: string;
-}
+export interface RequestConfig extends AxiosRequestConfig {}
 
-export type Response<T = unknown> = AxiosResponse<T>;
+export interface Response<T = unknown> extends AxiosResponse<T> {}
 
-export type RequestError<T = unknown> = AxiosError<T>;
+export interface RequestError<T = unknown> extends AxiosError<T> {}
 
 export class Request {
   constructor(private request = axios) {}
