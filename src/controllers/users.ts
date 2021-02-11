@@ -14,7 +14,7 @@ export class UsersController extends BaseController {
 
       response.status(201).send(newUser);
     } catch (error) {
-      this.sendCreatedUpdateErrorResponse(response, error);
+      this.sendCreateUpdateErrorResponse(response, error);
     }
   }
 }
