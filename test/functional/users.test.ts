@@ -57,8 +57,8 @@ describe('Usersfunctional tests', () => {
     });
   });
 
-  describe('When authentticating a user', () => {
-    it('should generate a token for a valid user', async () => {
+  describe('When authenticating a user', () => {
+    it.only('should generate a token for a valid user', async () => {
       const newUser = {
         name: 'John Doe',
         email: 'john@mail.com',
