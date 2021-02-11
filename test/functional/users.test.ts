@@ -74,10 +74,25 @@ describe('Usersfunctional tests', () => {
       );
     });
 
-    it.only('should return UNAUTHORIZED if the user with the given email is not found', async () => {
+    it('should return UNAUTHORIZED if the user with the given email is not found', async () => {
       const response = await global.testRequest
         .post('/users/authenticate')
         .send({ email: 'some-email@mail.com', password: '1234' });
+
+      expect(response.status).toBe(401);
+    });
+
+    it('should return UNAUTHORIZED if the user is found but the password does not match', async () => {
+      const newUser = {
+        name: 'John Doe',
+        email: 'john@mail.com',
+        password: '1234',
+      };
+
+      await new User(newUser).save();
+      const response = await global.testRequest
+        .post('/users/authenticate')
+        .send({ email: newUser.email, password: 'different_password' });
 
       expect(response.status).toBe(401);
     });
