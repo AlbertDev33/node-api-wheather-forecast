@@ -23,17 +23,20 @@ export class UsersController extends BaseController {
   public async authenticcate(
     request: Request,
     response: Response,
-  ): Promise<void> {
+  ): Promise<Response> {
     const { email, password } = request.body;
     const user = await User.findOne({ email });
 
     if (!user) {
-      return;
+      return response.status(401).send({
+        code: 401,
+        error: 'User not found',
+      });
     }
-    if (!(await AuthService.comparePassword(password, user.password))) {
-      return;
-    }
+    // if (!(await AuthService.comparePassword(password, user.password))) {
+    //   return;
+    // }
     const token = AuthService.generateToken(user.toJSON());
-    response.status(200).send({ token });
+    return response.status(200).send({ token });
   }
 }
