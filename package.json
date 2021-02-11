@@ -6,10 +6,11 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "yarn build && node dis/src/index.js",
+    "start": "yarn build && node dist/src/index.js",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "test:functional": "jest --forceExit --projects ./test --forceExit --runInBand",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test": "yarn test:unit && yarn test:functional"
   },
   "keywords": [
     "nodejs",

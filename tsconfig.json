@@ -6,7 +6,7 @@
       "lib": ["ES2019"],
       "sourceMap": true,
       "outDir": "./dist",
-      "rootDir": "./src",
+      "rootDir": "./",
       "strict": true,
       "strictPropertyInitialization": false,
       "noImplicitAny": true,
@@ -17,8 +17,8 @@
           "@test/*": ["./test/*"]
       },
       "rootDirs": [
-          "./src",
-          "./test"
+        "./src",
+        "./test"
       ],
       "allowJs": true,
       "esModuleInterop": true,
@@ -33,9 +33,9 @@
       "./src/**/*.ts"
     ],
     "exclude": [
-      "./node_modules",
-      "./tests",
-      "./lib",
-      "./dist"
+      "node_modules",
+      "tests",
+      "lib",
+      "dist"
     ]
   }
