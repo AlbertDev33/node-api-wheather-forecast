@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import nock from 'nock';
 
 import { Beach, BeachPosition } from '@src/models/beach';
