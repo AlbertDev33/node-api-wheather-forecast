@@ -33,9 +33,12 @@ export class UsersController extends BaseController {
         error: 'User not found',
       });
     }
-    // if (!(await AuthService.comparePassword(password, user.password))) {
-    //   return;
-    // }
+    if (!(await AuthService.comparePassword(password, user.password))) {
+      return response.status(401).send({
+        code: 401,
+        error: 'Password does not match!',
+      });
+    }
     const token = AuthService.generateToken(user.toJSON());
     return response.status(200).send({ token });
   }
