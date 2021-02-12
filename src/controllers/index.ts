@@ -27,7 +27,6 @@ export abstract class BaseController {
     if (duplicatedKindErrors.length) {
       return { code: 409, error: error.message };
     }
-    console.log('Chegou aqui!');
     return { code: 422, error: error.message };
   }
 }
