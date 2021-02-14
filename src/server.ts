@@ -2,6 +2,9 @@ import './util/module-alias';
 
 import { Server } from '@overnightjs/core';
 import express, { Application } from 'express';
+import expressPino from 'express-pino-logger';
+import cors from 'cors';
+import * as http from 'http';
 
 import * as database from '@src/database';
 
@@ -11,6 +14,8 @@ import { UsersController } from '@src/controllers/users';
 import logger from './logger';
 
 export class SetupServer extends Server {
+  private server?: http.Server;
+
   constructor(private port = 3000) {
     super();
   }
@@ -23,6 +28,12 @@ export class SetupServer extends Server {
 
   private setupExpress(): void {
     this.app.use(express.json());
+    this.app.use(
+      expressPino({
+        logger,
+      }),
+    );
+    this.app.use(cors({ origin: '*' }));
   }
 
   private setupControllers(): void {
@@ -42,6 +53,16 @@ export class SetupServer extends Server {
 
   public async close(): Promise<void> {
     await database.close();
+    if (this.server) {
+      await new Promise<void>((resolve, reject) => {
+        this.server?.close(err => {
+          if (err) {
+            return reject(err);
+          }
+          return resolve();
+        });
+      });
+    }
   }
 
   public start(): void {
