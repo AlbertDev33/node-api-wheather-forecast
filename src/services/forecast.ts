@@ -1,9 +1,11 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
+import logger from '@src/logger';
+import _ from 'lodash';
+
 import { StormGlass, ForecastPoint } from '@src/clients/StormGlass';
 import { ForecastProcessingInternalError } from '@src/util/errors/forecast-processing-internal-error';
 import { Beach } from '@src/models/beach';
-import logger from '@src/logger';
 import { Rating } from './rating';
 
 export interface BeachForecast extends Omit<Beach, 'user'>, ForecastPoint {}
@@ -32,7 +34,11 @@ export class Forecast {
         const enrichedBeachData = this.enrichedBeachData(points, beach, rating);
         pointWithCorrectSources.push(...enrichedBeachData);
       }
-      return this.mapForecastByTime(pointWithCorrectSources);
+      const timeForecast = this.mapForecastByTime(pointWithCorrectSources);
+      return timeForecast.map(t => ({
+        time: t.time,
+        forecast: _.orderBy(t.forecast, ['rating'], ['desc']),
+      }));
     } catch (error) {
       logger.error(error);
       throw new ForecastProcessingInternalError(error.message);
