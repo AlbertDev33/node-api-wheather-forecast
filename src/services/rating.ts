@@ -65,6 +65,23 @@ export class Rating {
     return 1;
   }
 
+  public getPositionFromLocation(coordiantes: number): BeachPosition {
+    if (coordiantes >= 310 || (coordiantes < 50 && coordiantes >= 0)) {
+      return BeachPosition.N;
+    }
+    if (coordiantes >= 50 && coordiantes < 120) {
+      return BeachPosition.E;
+    }
+    if (coordiantes >= 120 && coordiantes < 220) {
+      return BeachPosition.S;
+    }
+    if (coordiantes >= 220 && coordiantes < 310) {
+      return BeachPosition.W;
+    }
+
+    return BeachPosition.E;
+  }
+
   private isWindOffShore(
     wavePosition: BeachPosition,
     windPosition: BeachPosition,
