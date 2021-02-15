@@ -8,6 +8,6 @@ export class Rating {
     if (wavePosition === windPosition) {
       return 1;
     }
-    return 0;
+    return 3;
   }
 }
