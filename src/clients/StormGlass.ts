@@ -47,6 +47,7 @@ export class StormGlass {
 
   constructor(protected request = new HTTPUtil.Request()) {}
 
+  // TODO someone to cache this call
   public async fetchPoints(lat: number, lng: number): Promise<ForecastPoint[]> {
     const endTimeStamp = TimeUtil.getUnixTimeForAFutureDay(1);
     try {
