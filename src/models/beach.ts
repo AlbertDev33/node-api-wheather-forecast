@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
-import mongoose, { Document, Model, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
+import { BaseModel } from '.';
 
 export enum GeoPosition {
   S = 'S',
@@ -9,13 +10,16 @@ export enum GeoPosition {
   N = 'N',
 }
 
-export interface Beach {
-  _id?: string;
+export interface Beach extends BaseModel {
   name: string;
   position: GeoPosition;
   lat: number;
   lng: number;
   user: string;
+}
+
+export interface ExistingBeach extends Beach {
+  id: string;
 }
 
 const schema = new mongoose.Schema(
@@ -29,7 +33,7 @@ const schema = new mongoose.Schema(
   {
     toJSON: {
       transform: (_, ret): void => {
-        ret.id = ret._id;
+        ret.id = ret._id.toString();
         delete ret._id;
         delete ret.__v;
       },
@@ -37,5 +41,4 @@ const schema = new mongoose.Schema(
   },
 );
 
-interface BeachModel extends Omit<Beach, '_id'>, Document {}
-export const Beach: Model<BeachModel> = mongoose.model('Beach', schema);
+export const Beach = mongoose.model<Beach>('Beach', schema);
